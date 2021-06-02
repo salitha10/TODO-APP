@@ -48,7 +48,6 @@
                 android:layout_marginBottom="8dp"
                 android:text="Description"
                 app:layout_constraintBottom_toBottomOf="@+id/card_constrained_layout"
-                app:layout_constraintEnd_toBottomOf="@+id/title"
                 app:layout_constraintStart_toStartOf="@+id/card_constrained_layout"
                 app:layout_constraintTop_toBottomOf="@+id/title"
                 app:layout_constraintVertical_bias="0.241"
@@ -73,3 +72,5 @@
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
