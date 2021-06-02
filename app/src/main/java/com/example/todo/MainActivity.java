@@ -10,11 +10,15 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     private ListView todoList;
     private TextView countTxt;
     private Button addTodo;
+    private List<ToDoModel> toDos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         todoList = (ListView)findViewById(R.id.listViewToDo);
         countTxt = (TextView)findViewById(R.id.txtCount);
         addTodo = (Button)findViewById(R.id.btnAdd);
+        toDos = new ArrayList<>();
 
         addTodo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,7 +43,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         DBHandler dbh = new DBHandler(getApplicationContext());
+
+        //Set count
         int count = dbh.getCountTODO();
         countTxt.setText("You have " + count + " TODOs");
+
+        //Save list
+        toDos = dbh.getAllToDos();
+
+        //Set adapter to list
+        ToDoAdapter toDoAdapter = new ToDoAdapter(getApplicationContext(), R.layout.todo_cardview, toDos);
+        todoList.setAdapter(toDoAdapter);
     }
 }

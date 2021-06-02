@@ -5,26 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="8dp">
+    android:layout_marginTop="8dp">
+
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="2dp"
-        android:layout_marginTop="2dp"
-        android:divider="@android:color/transparent"
-        android:dividerHeight="0.0px"
-        android:clipToPadding="false"
-        android:clipChildren="false"
-        card_view:cardElevation="10dp"
+        android:layout_height="match_parent"
         card_view:cardPreventCornerOverlap="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:id="@+id/card_constrained_layout">
         <TextView
             android:id="@+id/title"
@@ -40,7 +34,7 @@
             app:layout_constraintTop_toTopOf="@+id/card_constrained_layout" />
 
             <TextView
-                android:id="@+id/description"
+                android:id="@+id/txtDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
