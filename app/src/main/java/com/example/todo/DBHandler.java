@@ -103,7 +103,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
 
     //Get all records
-    public List<ToDoModel> getAllToDos(){
+    public List<ToDoModel> getAllToDos() {
 
         List<ToDoModel> toDos = new ArrayList<>();
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
@@ -113,8 +113,8 @@ public class DBHandler extends SQLiteOpenHelper {
         Cursor cursor = sqLiteDatabase.rawQuery(query, null);
 
         //Move to row
-        if(cursor.moveToFirst()){
-            do{
+        if (cursor.moveToFirst()) {
+            do {
                 //object
                 ToDoModel toDo = new ToDoModel();
 
@@ -128,8 +128,44 @@ public class DBHandler extends SQLiteOpenHelper {
                 //Add to list
                 toDos.add(toDo);
 
-            } while(cursor.moveToNext());
+            } while (cursor.moveToNext());
         }
         return toDos;
+    }
+
+    //Delete item
+    public void deleteItem(int id) {
+        SQLiteDatabase sqLiteDatabase = getWritableDatabase();
+        //String query = "DELETE FROM " + TABLE_NAME + "WHERE id = " + id;
+        sqLiteDatabase.delete(TABLE_NAME, "id " + "= ?", new String[]{String.valueOf(id)});
+        sqLiteDatabase.close();
+    }
+
+    //Update data
+    public void updateItem(ToDoModel todo){
+        SQLiteDatabase sqLiteDatabase = getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        //Insert data
+        contentValues.put(TITLE, todo.getTitle());
+        contentValues.put(DESCRIPTION, todo.getDescription());
+        contentValues.put(STARTED, todo.getStarted());
+        contentValues.put(FINISHED, todo.getFinished());
+
+        //Update
+        sqLiteDatabase.update(TABLE_NAME, contentValues,"id = ?", new String[]{String.valueOf(todo.getId())});
+        sqLiteDatabase.close();
+    }
+
+    //Update finished status
+    public void updateFinished(int id, long time){
+
+        SQLiteDatabase sqLiteDatabase = getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(FINISHED, time);
+
+        //Update finished
+        sqLiteDatabase.update(TABLE_NAME, contentValues, "id = ?", new String[]{String.valueOf(id)});
     }
 }

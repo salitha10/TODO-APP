@@ -37,18 +37,19 @@ public class ToDoAdapter extends ArrayAdapter<ToDoModel> {
 
         TextView title = row.findViewById(R.id.title);
         TextView description = row.findViewById(R.id.txtDescription);
-        ImageView img = row.findViewById(R.id.img_done);
-        img.setVisibility(View.INVISIBLE);
+        ImageView img = (ImageView)row.findViewById(R.id.img_done);
+        img.setVisibility(View.VISIBLE);
 
         //Set data in card view
         ToDoModel todo = todos.get(position);
         title.setText(todo.getTitle());
         description.setText(todo.getDescription());
 
+        /*
         //Show done image
         if(todo.getFinished() > 0){
             img.setVisibility(View.VISIBLE);
-        }
+        }*/
 
         return row;
     }

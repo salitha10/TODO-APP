@@ -6,7 +6,7 @@ public class ToDoModel {
     private String Description, Title;
     private long started, finished;
 
-    public ToDoModel(int id, String description, String title, long started, long finished) {
+    public ToDoModel(int id,  String title, String description, long started, long finished) {
         this.id = id;
         Description = description;
         Title = title;
@@ -14,7 +14,7 @@ public class ToDoModel {
         this.finished = finished;
     }
 
-    public ToDoModel(String description, String title, long started, long finished) {
+    public ToDoModel( String title, String description, long started, long finished) {
         Description = description;
         Title = title;
         this.started = started;
